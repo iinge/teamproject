@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style></style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demotodo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function addItem() {
+        let list = document.getElementById('todolist');
+        let todo = document.getElementById('form3');
+        let listitem = document.createElement('li');
+        let xbtn = document.createElement('button');
+        let cbx = document.createElement('input');
+        let hr = document.createElement('hr');
+
+        listitem.className = 'd-flex align-items-center';
+        xbtn.className = 'btn-close  ms-auto';
+
+        xbtn.onclick = function (e) {
+          let pnode = e.target.parentNode;
+          list.removeChild(pnode);
+          list.removeChild(hr);
+        };
+
+        cbx.type = 'checkbox';
+        cbx.className = 'form-check-input me-2';
+
+        listitem.style.fontFamily = 'Georgia, serif'; //css fontfamil 한글쳐서 검색
+
+        // listitem.innerText = todo.value;
+        listitem.appendChild(cbx);
+        listitem.appendChild(document.createTextNode(todo.value));
+        listitem.appendChild(xbtn);
+
+        list.appendChild(listitem);
+        list.appendChild(hr);
+
+        todo.value = '';
+        todo.focus();
+      }
+    </script>
+  </head>
+  <body>
+    <section class="vh-100" style="background-color: #e2d5de">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col col-xl-10">
+            <div class="card" style="border-radius: 15px">
+              <div class="card-body p-5">
+                <h6 class="mb-3"><script>let today = new Date();  
+                    let month = today.getMonth() + 1; 
+                    let date = today.getDate(); 
+                    document.write(month + '월' + date+'일 To Do')</script>
+                    </h6>
+
+                <form
+                  class="d-flex justify-content-center align-items-center mb-4"
+                >
+                  <div class="form-outline flex-fill">
+                    <input
+                      type="text"
+                      id="form3"
+                      class="form-control form-control-lg"
+                      placeholder="할일 추가하기"
+                    />
+                    <label class="form-label" for="form3"><!--할일 추가하기--></label>
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-lg ms-2"
+                    onclick="addItem()"
+                  >
+                    Add
+                  </button>
+                </form>
+
+                <ul id="todolist" class="list-group mb-0">
+                  <!-- <li
+                    class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2"
+                  >
+                    <div class="d-flex align-items-center">
+                      <input
+                        class="form-check-input me-2"
+                        type="checkbox"
+                        value=""
+                        aria-label="..."
+                      />
+                      Cras justo odio
+                    </div>
+                    <a href="#!" data-mdb-toggle="tooltip" title="Remove item">
+                      <i class="fas fa-times text-primary"></i>
+                    </a>
+                  </li>
+                  <li
+                    class="list-group-item d-flex d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2"
+                  >
+                    <div class="d-flex align-items-center">
+                      <input
+                        class="form-check-input me-2"
+                        type="checkbox"
+                        value=""
+                        aria-label="..."
+                        checked
+                      />
+                      <s>Dapibus ac facilisis in</s>
+                    </div>
+                    <a href="#!" data-mdb-toggle="tooltip" title="Remove item">
+                      <i class="fas fa-times text-primary"></i>
+                    </a>
+                  </li>
+
+                  <li
+                    class="list-group-item d-flex d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-0"
+                  >
+                    <div class="d-flex align-items-center">
+                      <input
+                        class="form-check-input me-2"
+                        type="checkbox"
+                        value=""
+                        aria-label="..."
+                        checked
+                      />
+                      Vestibulum at eros
+                    </div>
+                    <a href="#!" data-mdb-toggle="tooltip" title="Remove item">
+                      <i class="fas fa-times text-primary"></i>
+                    </a>
+                  </li> -->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
