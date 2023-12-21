@@ -1,11 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-  *{
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  /* Import Google font - Poppins */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
   }
-  body{
+  body {
     display: flex;
     align-items: center;
     padding: 0 10px;
@@ -13,22 +20,23 @@
     min-height: 100vh;
     background: white;
   }
-  .wrapper{
-    width: 600px;
+  .wrapper {
+    width: 510px;
+    height: 350px;
     background: #fff;
     border-radius: 10px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
   }
-  .wrapper header{
+  .wrapper header {
     display: flex;
     align-items: center;
-    padding: 25px 30px 10px;
+    padding: 15px 30px 10px;
     justify-content: space-between;
   }
-  header .icons{
+  header .icons {
     display: flex;
   }
-  header .icons span{
+  header .icons span {
     height: 38px;
     width: 38px;
     margin: 0 1px;
@@ -40,86 +48,88 @@
     user-select: none;
     border-radius: 50%;
   }
-  .icons span:last-child{
+  .icons span:last-child {
     margin-right: -10px;
   }
-  header .icons span:hover{
+  header .icons span:hover {
     background: #f2f2f2;
   }
-  header .current-date{
+  header .current-date {
     font-size: 1.45rem;
     font-weight: 500;
   }
-  .calendar{
-    padding: 20px;
+  .calendar {
+    position: relative;
+    top: -1%;
+    width: 95%;
   }
-  .calendar ul{
+  .calendar ul {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
     text-align: center;
   }
-  .calendar .days{
-    margin-bottom: 20px;
+  .calendar .days {
+    margin-bottom: 30px;
   }
-  .calendar li{
+  .calendar li {
     color: #333;
     width: calc(100% / 7);
     font-size: 1.07rem;
   }
-  .calendar .weeks li{
+  .calendar .weeks li {
     font-weight: 500;
     cursor: default;
   }
-  .calendar .days li{
+  .calendar .days li {
     z-index: 1;
     cursor: pointer;
     position: relative;
     margin-top: 8px;
-    font-size:1.02rem;
+    font-size: 1.02rem;
   }
-  .days li.inactive{
+  .days li.inactive {
     color: #aaa;
   }
-  .days li.active{
+  .days li.active {
     color: #fff;
   }
-  .days li::before{
+  .days li::before {
     position: absolute;
-    content: "";
+    content: '';
     left: 50%;
     top: 50%;
-    height: 40px;
-    width: 40px;
+    height: 35px;
+    width: 35px;
     z-index: -1;
     border-radius: 50%;
     transform: translate(-50%, -50%);
   }
-  .days li.active::before{
-    background: #9B59B6;
-  } 
-  .days li:not(.active):hover::before{
+  .days li.active::before {
+    background: #9b59b6;
+  }
+  .days li:not(.active):hover::before {
     background: #f2f2f2;
   }
-  .position1{
-    position : absolute;
-    top: 10%;
-    left :35%;
+  .positioncalendar {
+    position: absolute;
+    top: 4%;
+    left: 35%;
   }
-   .positiontodo{
-       position : absolute;
-       left : 32%;
-       top: 48%;
-       width:400px;
-   }
-   #form3{
-      width:160px;
-      font-size: 15px;
-   }
-   #addbutton{
-      position : absolute;
-      top: 84px;
-      left :68%;
-      font-size: 15px;
-   }
-   @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+  .positiontodo {
+    position: absolute;
+    left: 32%;
+    top: 48%;
+    width: 25%;
+  }
+  #form3 {
+    width: 70%;
+    font-size: 15px;
+  }
+  #addbutton {
+    position: absolute;
+    top: 84px;
+    left: 68%;
+    font-size: 85%;
+  }
+  @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
