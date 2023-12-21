@@ -20,7 +20,8 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <div class="position1">
+    <div class="container">
+    <div class="positioncalendar">
         <div class="wrapper">
           <header>
             <p class="current-date"></p>
@@ -43,6 +44,7 @@
           </div>
         </div>
         </div>
+    </div>
 
     <div class="positiontodo">
       <div class="container py-5 h-100">
@@ -50,10 +52,14 @@
           <div class="col col-xl-10">
             <div class="card" style="border-radius: 15px">
               <div class="card-body p-5">
-                <h6 class="mb-3"><script>let today1 = new Date();  
-                    let month1 = today1.getMonth() + 1; 
-                    let date2 = today1.getDate(); 
-                    document.write(month1 + '월' + date2+'일 To Do')</script></h6>
+                <h6 class="mb-3">
+                  <script>
+                    let today1 = new Date();
+                    let month1 = today1.getMonth() + 1;
+                    let date2 = today1.getDate();
+                    document.write(month1 + '월' + date2 + '일 To Do');
+                  </script>
+                </h6>
 
                 <form
                   class="d-flex justify-content-center align-items-center mb-4"
@@ -68,23 +74,23 @@
                     <label class="form-label" for="form3"></label>
                   </div>
                   <div>
-                  <button
-                    type="button"
-                    id="addbutton"
-                    class="btn btn-primary btn-lg ms-2"
-                    onclick="addItem()"
-                  >
-                    Add
-                  </button>
-                </div>
+                    <button
+                      type="button"
+                      id="addbutton"
+                      class="btn btn-primary btn-lg ms-2"
+                      onclick="addItem()"
+                    >
+                      Add
+                    </button>
+                  </div>
                 </form>
-                <ul id="todolist" class="list-group mb-0">
-                </ul>
+
+                <ul id="todolist" class="list-group mb-0"></ul>
               </div>
             </div>
           </div>
         </div>
       </div>
-</div>
+    </div>
   </body>
 </html>
