@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>오늘 푼 문제</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .memo-container {
+        width: 300px;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        text-align: center;
+      }
+
+      h1 {
+        color: #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #problemCount {
+        margin-left: 5px;
+        font-size: 0.8em;
+        color: #777;
+      }
+
+      .input-field {
+        width: calc(100% - 40px);
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+      }
+
+      .add-button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .add-button:hover {
+        background-color: #0056b3;
+      }
+
+      .memo-list {
+        text-align: left;
+        margin-top: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+
+      .memo-item {
+        margin: 0 5px;
+        display: flex;
+        align-items: center;
+        position: relative;
+      }
+
+      .memo-item span {
+        color: #333;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        margin-right: 5px;
+        position: relative;
+        font-size: 0.9em;
+      }
+
+      .memo-item span a {
+        color: #333;
+        text-decoration: none;
+      }
+
+      .memo-item span a:hover {
+        color: #007bff;
+      }
+
+      .delete-icon {
+        text-align: center;
+        cursor: pointer;
+        display: none;
+        position: absolute;
+        top: -1px;
+        right: -1px;
+        transition: transform 0.2s ease-in-out;
+        font-size: 1px;
+      }
+
+      .memo-item:hover .delete-icon,
+      .memo-item span a:focus + .delete-icon {
+        display: inline-block;
+        transform: scale(1.2);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="memo-container">
+      <h1>오늘 푼 문제<span id="problemCount"> 0개</span></h1>
+      <input
+        type="text"
+        id="problemNumber"
+        class="input-field"
+        placeholder="문제 번호를 입력하세요"
+      />
+      <button onclick="generateLink()" class="add-button">Add</button>
+      <div id="memoList" class="memo-list"></div>
+    </div>
+
+    <script>
+      function generateLink() {
+        var inputField = document.getElementById("problemNumber");
+        var problemNumber = inputField.value.trim();
+
+        if (problemNumber !== "") {
+          var memoList = document.getElementById("memoList");
+
+          var memoItem = document.createElement("div");
+          memoItem.classList.add("memo-item");
+
+          var span = document.createElement("span");
+          var link = document.createElement("a");
+          link.href = "https://www.acmicpc.net/problem/" + problemNumber;
+          link.innerText = problemNumber;
+
+          span.appendChild(link);
+          memoItem.appendChild(span);
+
+          var deleteIcon = document.createElement("span");
+          deleteIcon.innerHTML = "&#10006;"; // X symbol
+          deleteIcon.classList.add("delete-icon");
+          deleteIcon.onclick = function () {
+            memoItem.remove();
+            updateProblemCount();
+          };
+
+          memoItem.appendChild(deleteIcon);
+          memoList.appendChild(memoItem);
+
+          updateProblemCount();
+
+          inputField.value = "";
+        } else {
+          alert("문제 번호를 입력하세요.");
+        }
+      }
+
+      function updateProblemCount() {
+        var problemCount = document.getElementById("problemCount");
+        var currentCount = document.querySelectorAll(
+          ".memo-list .memo-item"
+        ).length;
+        problemCount.innerText = " " + currentCount + "개";
+      }
+    </script>
+  </body>
+</html>

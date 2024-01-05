@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDOC Login</title>
+    <style>
+        body {
+            background-color: rgb(0, 70, 42);
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: rgb(0, 70, 42);
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 회원가입 창 -->
+    <div class="container" id="signup-form">
+        <h2>Welcome EDOC!</h2>
+        <label for="student-id">학번:</label>
+        <input type="text" id="student-id" placeholder="Enter your student ID">
+
+        <label for="name">이름:</label>
+        <input type="text" id="name" placeholder="Enter your name">
+
+        <label for="signup-username">아이디:</label>
+        <input type="text" id="signup-username" placeholder="Enter your username">
+
+        <label for="signup-password">비밀번호:</label>
+        <input type="password" id="signup-password" placeholder="Enter your password">
+
+        <button onclick="signup()">회원가입</button>
+    </div>
+
+    <!-- 로그인 창 -->
+    <div class="container" id="login-form" style="display: none;">
+        <h2>EDOC Login</h2>
+        <label for="login-username">아이디:</label>
+        <input type="text" id="login-username" placeholder="Enter your username">
+
+        <label for="login-password">비밀번호:</label>
+        <input type="password" id="login-password" placeholder="Enter your password">
+
+        <button onclick="login()">로그인</button>
+    </div>
+
+    <!-- 로그인 성공 팝업창 -->
+    <div class="popup" id="login-success-popup">
+        <p>로그인 성공!</p>
+    </div>
+
+    <script>
+        let users = []; // 사용자 정보를 저장할 배열
+
+        function signup() {
+            const studentId = document.getElementById('student-id').value;
+            const name = document.getElementById('name').value;
+            const username = document.getElementById('signup-username').value;
+            const password = document.getElementById('signup-password').value;
+
+            // 간단한 유효성 검사
+            if (username && password) {
+                // 회원가입 정보를 배열에 추가
+                users.push({ studentId, name, username, password });
+
+                // 회원가입 후 로그인 폼 표시
+                showLoginForm();
+            } else {
+                alert('아이디와 비밀번호를 입력하세요.');
+            }
+        }
+
+        function login() {
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+
+            // 간단한 로그인 로직
+            const user = users.find(u => u.username === username && u.password === password);
+
+            //     if (user) {
+            //       // 로그인 성공 시 팝업 표시
+            //       showLoginSuccessPopup();
+            //     } else {
+            //       alert('아이디 또는 비밀번호가 올바르지 않습니다.');
+            //     }
+        }
+
+        function login() {
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+
+            // 간단한 로그인 로직
+            const user = users.find(u => u.username === username && u.password === password);
+
+            if (user) {
+
+                // 로그인 성공 시 사용자 정보를 localStorage에 저장
+                localStorage.setItem('studentId', user.studentId);
+                localStorage.setItem('name', user.name);
+                localStorage.setItem('username', user.username);
+                // 로그인 성공 시 다른 HTML 파일로 이동
+                showLoginSuccessPopup();
+                window.location.href = 'ttdemo.html'; // 여기 두번쨰 파일 이름
+            } else {
+                alert('아이디 또는 비밀번호가 올바르지 않습니다.');
+            }
+        }
+
+        function showLoginForm() {
+            document.getElementById('signup-form').style.display = 'none';
+            document.getElementById('login-form').style.display = 'block';
+        }
+
+        function showLoginSuccessPopup() {
+            document.getElementById('login-success-popup').style.display = 'block';
+        }
+    </script>
+
+</body>
+
+</html>
